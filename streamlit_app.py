@@ -36,7 +36,7 @@ with st.expander('Analysis Data'):
     st.write("Raw Data")
     st.dataframe(df)
     
-tokenizer = pickle.load(open('tokenizer(1).pkl', 'rb'))
+tokenizer = pickle.load(open('tokenizer (1).pkl', 'rb'))
 model = load_model("lstm_model.h5")
 
 MAX_LEN = 512
