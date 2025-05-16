@@ -36,10 +36,10 @@ with st.expander('Analysis Data'):
     st.write("Raw Data")
     st.dataframe(df)
     
-tokenizer = pickle.load(open('tokenizer.pkl', 'rb'))
-model = load_model("bilstm_model.h5")
+tokenizer = pickle.load(open('tokenizer(1).pkl', 'rb'))
+model = load_model("lstm_model.h5")
 
-MAX_LEN = 500
+MAX_LEN = 512
 
 # Define your label mapping manually
 bias_labels = ['left', 'right', 'center']
