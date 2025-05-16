@@ -28,7 +28,7 @@ st.title("Hugging Face Dataset Viewer")
 
 @st.cache_data
 def load_data():
-    dataset = load_dataset("Faith1712/Allsides_political_bias_proper", split="train[:15000]")
+    dataset = load_dataset("Faith1712/Allsides_political_bias_proper", split="train[:12000]")
     return dataset
 dataset = load_data()
 df = pd.DataFrame(dataset)
