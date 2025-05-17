@@ -65,6 +65,7 @@ def predict_bilstm(text):
     except Exception as e:
         st.error(f"Prediction error: {str(e)}")
         return "Prediction Failed"
+
 def predict_rnn(text):
      try:
         sequence = tokenizer.texts_to_sequences([text])
