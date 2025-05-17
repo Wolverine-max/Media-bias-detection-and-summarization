@@ -27,19 +27,21 @@ st.sidebar.title('Media Bias Detection and Summarization')
 st.title("Hugging Face Dataset Viewer")
     
 tokenizer = pickle.load(open('tokenizer (1).pkl', 'rb'))
-model = load_model("lstm_model.h5")
+model_lstm = load_model("lstm_model.h5")
+model_bilstm = load_model("bilstm_model (1).h5")
+model_rnn = load_model("rnn_model (1).h5")
 
 MAX_LEN = 512
 
 # Define your label mapping manually
 bias_labels = ['left', 'right', 'center']
 
-def predict_bias(text):
+def predict_lstm(text):
     try:
         sequence = tokenizer.texts_to_sequences([text])
         padded = pad_sequences(sequence, maxlen=MAX_LEN, padding='post', truncating='post')
 
-        prediction = model.predict(padded)
+        prediction = model_lstm.predict(padded)
         predicted_index = prediction.argmax(axis=1)[0]
         predicted_label = bias_labels[predicted_index]
 
@@ -48,13 +50,50 @@ def predict_bias(text):
     except Exception as e:
         st.error(f"Prediction error: {str(e)}")
         return "Prediction Failed"
+        
+def predict_bilstm(text):
+     try:
+        sequence = tokenizer.texts_to_sequences([text])
+        padded = pad_sequences(sequence, maxlen=MAX_LEN, padding='post', truncating='post')
 
+        prediction = model_bilstm.predict(padded)
+        predicted_index = prediction.argmax(axis=1)[0]
+        predicted_label = bias_labels[predicted_index]
+
+        return predicted_label
+
+    except Exception as e:
+        st.error(f"Prediction error: {str(e)}")
+        return "Prediction Failed"
+def predict_rnn(text):
+     try:
+        sequence = tokenizer.texts_to_sequences([text])
+        padded = pad_sequences(sequence, maxlen=MAX_LEN, padding='post', truncating='post')
+
+        prediction = model_rnn.predict(padded)
+        predicted_index = prediction.argmax(axis=1)[0]
+        predicted_label = bias_labels[predicted_index]
+
+        return predicted_label
+
+    except Exception as e:
+        st.error(f"Prediction error: {str(e)}")
+        return "Prediction Failed"
     
 st.title(" Bias Detection Using Pre-trained Model")
 text = st.text_area("Enter a news article :")
 
+model_choice = st.selectbox("Choose a model for bias detection", ["BiLSTM", "LSTM","RNN"])
+
 if st.button("Detect Bias") and text:
-    predicted_bias = predict_bias(text)
+    if model_choice == "BiLSTM":
+        predicted_bias = predict_bilSTM(text)
+    elif model_choice == "LSTM":
+        predicted_bias = predict_lstm(text)
+    elif model_choice == "RNN":
+        predicted_bias = predict_rnn(text)
+    else:
+        predicted_bias = "Unknown model selected"
 
     st.markdown(f"🧠 **Predicted Bias:** `{predicted_bias}`")
     if predicted_bias == "left":
