@@ -134,6 +134,7 @@ def summarize_with_groq(text, model="meta-llama/llama-4-scout-17b-16e-instruct")
         )
         data = response.json()
         return data["choices"][0]["message"]["content"]
+        print(response.text)
     
     except Exception as e:
         return f"Error: {e}"
@@ -154,9 +155,7 @@ if user_article:
 
     elif model_choice == "Groq - LLaMA":
         summary = summarize_with_groq(user_article, model="meta-llama/llama-4-scout-17b-16e-instruct")
-        print(response.text)
-       
-
+        
 
     with st.container():
         st.write("summarized article:")
