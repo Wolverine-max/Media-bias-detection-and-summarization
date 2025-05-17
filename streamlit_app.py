@@ -62,9 +62,9 @@ def predict_bilstm(text):
 
         return predicted_label
 
-    except Exception as e:
-        st.error(f"Prediction error: {str(e)}")
-        return "Prediction Failed"
+     except Exception as e:
+         st.error(f"Prediction error: {str(e)}")
+         return "Prediction Failed"
 
 def predict_rnn(text):
      try:
@@ -77,9 +77,9 @@ def predict_rnn(text):
 
         return predicted_label
 
-    except Exception as e:
-        st.error(f"Prediction error: {str(e)}")
-        return "Prediction Failed"
+     except Exception as e:
+         st.error(f"Prediction error: {str(e)}")
+         return "Prediction Failed"
     
 st.title(" Bias Detection Using Pre-trained Model")
 text = st.text_area("Enter a news article :")
