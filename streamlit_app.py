@@ -113,6 +113,61 @@ if user_article:
         model="gemini-2.0-flash", contents=f"summarize the article:\n\n{user_article}"
     )
     print(response.text)
+    
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+
+
+GROQ_HEADERS = {
+    "Authorization": f"Bearer {GROQ_API_KEY}",
+    "Content-Type": "application/json"
+}
+
+# Summarization function for Groq
+def summarize_with_groq(text, model=""):
+    try:
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "user", "content": f"Summarize the article:\n\n{text}"}
+            ],
+            "temperature": 0.7,
+            "max_tokens": 512
+        }
+
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers=GROQ_HEADERS,
+            json=payload,
+            timeout=60
+        )
+        data = response.json()
+        return data["choices"][0]["message"]["content"]
+    
+    except Exception as e:
+        return f"Error: {e}"
+
+# Streamlit UI
+st.title("Article Summarizer")
+model_choice = st.selectbox("Choose Model", ["Gemini", "Groq - LLaMA", " Mistral"])
+user_article = st.text_area("Your Text Here...")
+
+if user_article:
+    if model_choice == "Gemini ":
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=f"summarize the article:\n\n{user_article}"
+        )
+        summary = response.text
+
+    elif model_choice == "Groq - LLaMA3":
+        summary = summarize_with_groq(user_article, model="llama3-70b-8192")
+
+    elif model_choice == "Groq - Mixtral":
+        summary = summarize_with_groq(user_article, model="mixtral-8x7b-32768")
+
+
     with st.container():
         st.write("summarized article:")
         st.write(response.text)
