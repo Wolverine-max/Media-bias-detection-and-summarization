@@ -144,7 +144,7 @@ st.title("Article Summarizer")
 model_choice = st.selectbox("Choose Model", ["Gemini", "Groq - LLaMA", " Mistral"])
 user_article = st.text_area("Your Text Here...")
 
-if user_article:
+if st.button("Summarize Article") and user_article:
     if model_choice == "Gemini ":
         client = genai.Client(api_key=GEMINI_API_KEY)
         response = client.models.generate_content(
