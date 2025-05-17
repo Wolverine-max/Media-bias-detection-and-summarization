@@ -159,5 +159,5 @@ if user_article:
 
     with st.container():
         st.write("summarized article:")
-         st.write(summary)
+        st.write(summary)
         
