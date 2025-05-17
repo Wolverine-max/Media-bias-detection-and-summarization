@@ -104,8 +104,6 @@ if st.button("Detect Bias") and text:
     else:
         st.markdown("✋ This article appears **center**.")
 
-
-st.title("Article Summarizer")
     
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
