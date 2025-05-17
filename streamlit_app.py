@@ -88,7 +88,7 @@ model_choice = st.selectbox("Choose a model for bias detection", ["BiLSTM", "LST
 
 if st.button("Detect Bias") and text:
     if model_choice == "BiLSTM":
-        predicted_bias = predict_bilSTM(text)
+        predicted_bias = predict_bilstm(text)
     elif model_choice == "LSTM":
         predicted_bias = predict_lstm(text)
     elif model_choice == "RNN":
