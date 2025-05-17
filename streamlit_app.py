@@ -153,7 +153,8 @@ if user_article:
         summary = response.text
 
     elif model_choice == "Groq - LLaMA":
-        summary = summarize_with_groq(user_article, model="llama3-70b-8192")
+        summary = summarize_with_groq(user_article, model)
+        summary = response.text
 
 
     with st.container():
