@@ -25,16 +25,6 @@ st.write('This app is for Bias detection and Summarization of News Articles !')
 st.sidebar.title('Media Bias Detection and Summarization')
 
 st.title("Hugging Face Dataset Viewer")
-
-@st.cache_data
-def load_data():
-    dataset = load_dataset("Faith1712/Allsides_political_bias_proper", split="train[:12000]")
-    return dataset
-dataset = load_data()
-df = pd.DataFrame(dataset)
-with st.expander('Analysis Data'):
-    st.write("Raw Data")
-    st.dataframe(df)
     
 tokenizer = pickle.load(open('tokenizer (1).pkl', 'rb'))
 model = load_model("lstm_model.h5")
