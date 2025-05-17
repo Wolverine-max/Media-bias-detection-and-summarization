@@ -150,7 +150,7 @@ if user_article:
             model="gemini-2.0-flash",
             contents=f"summarize the article:\n\n{user_article}"
         )
-        summary = response.text
+        
 
     elif model_choice == "Groq - LLaMA":
         summary = summarize_with_groq(user_article, model="meta-llama/llama-4-scout-17b-16e-instruct")
