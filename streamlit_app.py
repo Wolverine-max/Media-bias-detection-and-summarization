@@ -114,7 +114,7 @@ GROQ_HEADERS = {
     "Content-Type": "application/json"
 }
 
-# Summarization function for Groq
+
 def summarize_with_groq(text, model="meta-llama/llama-4-scout-17b-16e-instruct"):
     try:
         payload = {
@@ -153,7 +153,7 @@ if user_article:
         summary = response.text
 
     elif model_choice == "Groq - LLaMA":
-        summary = summarize_with_groq(user_article, model)
+        summary = summarize_with_groq(user_article, model="meta-llama/llama-4-scout-17b-16e-instruct")
         summary = response.text
 
 
