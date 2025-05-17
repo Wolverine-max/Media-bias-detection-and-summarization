@@ -159,4 +159,4 @@ if user_article:
 
     with st.container():
         st.write("summarized article:")
-        st.write(response.text)
+        
