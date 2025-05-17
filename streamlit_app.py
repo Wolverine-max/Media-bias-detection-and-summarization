@@ -106,13 +106,6 @@ if st.button("Detect Bias") and text:
 
 
 st.title("Article Summarizer")
-user_article= st.text_area("Your Text Here...")         
-if user_article:
-    client = genai.Client(api_key= st.secrets[""])
-    response = client.models.generate_content(
-        model="gemini-2.0-flash", contents=f"summarize the article:\n\n{user_article}"
-    )
-    print(response.text)
     
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
@@ -124,7 +117,7 @@ GROQ_HEADERS = {
 }
 
 # Summarization function for Groq
-def summarize_with_groq(text, model=""):
+def summarize_with_groq(text, model="meta-llama/llama-4-scout-17b-16e-instruct"):
     try:
         payload = {
             "model": model,
@@ -161,11 +154,8 @@ if user_article:
         )
         summary = response.text
 
-    elif model_choice == "Groq - LLaMA3":
+    elif model_choice == "Groq - LLaMA":
         summary = summarize_with_groq(user_article, model="llama3-70b-8192")
-
-    elif model_choice == "Groq - Mixtral":
-        summary = summarize_with_groq(user_article, model="mixtral-8x7b-32768")
 
 
     with st.container():
