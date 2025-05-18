@@ -137,18 +137,10 @@ def summarize_with_groq(text, model="meta-llama/llama-4-scout-17b-16e-instruct")
     except Exception as e:
         return f"Error: {e}"
         
-def summarize_with_gemini(text):
-    try:
-        client = genai.Client(api_key="YOUR_API_KEY")
-        response = client.models.generate_content( model="gemini-2.0-flash", contents="Explain how AI works in a few words"
-    )
-    print(response.text)
-    except Exception as e:
-        return f"Gemini Error: {e}"
 
 # Streamlit UI
 st.title("Article Summarizer")
-model_choice = st.selectbox("Choose Model", ["Gemini", "Groq - LLaMA", " Mistral"])
+model_choice = st.selectbox("Choose Model", ["Groq - LLaMA"])
 user_article = st.text_area("Your Text Here...")
 
 if st.button("Summarize Article") and user_article:
