@@ -152,9 +152,7 @@ user_article = st.text_area("Your Text Here...")
 
 if st.button("Summarize Article") and user_article:
     if model_choice == "Gemini ":
-        summary = summarize_with_gemini(user_article, model="gemini-2.0-flash")
-       
-        
+        summary = summarize_with_gemini(user_article)    
         
 
     elif model_choice == "Groq - LLaMA":
