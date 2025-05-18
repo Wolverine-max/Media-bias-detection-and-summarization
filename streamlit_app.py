@@ -24,7 +24,6 @@ st.title('Media Bias Detection and Summarization App')
 st.write('This app is for Bias detection and Summarization of News Articles !')
 st.sidebar.title('Media Bias Detection and Summarization')
 
-st.title("Hugging Face Dataset Viewer")
     
 tokenizer = pickle.load(open('tokenizer (1).pkl', 'rb'))
 model_lstm = load_model("lstm_model.h5")
