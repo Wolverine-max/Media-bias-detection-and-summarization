@@ -139,9 +139,10 @@ def summarize_with_groq(text, model="meta-llama/llama-4-scout-17b-16e-instruct")
         
 def summarize_with_gemini(text):
     try:
-        client = genai.GenerativeModel("gemini-2.0-flash", api_key=GEMINI_API_KEY)
-        response = client.generate_content(f"summarize the article:\n\n{text}")
-        return response.text
+        client = genai.Client(api_key="YOUR_API_KEY")
+        response = client.models.generate_content( model="gemini-2.0-flash", contents="Explain how AI works in a few words"
+)
+print(response.text)
     except Exception as e:
         return f"Gemini Error: {e}"
 
