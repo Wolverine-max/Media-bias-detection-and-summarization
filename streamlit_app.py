@@ -32,7 +32,6 @@ model_rnn = load_model("rnn_model (1).h5")
 
 MAX_LEN = 512
 
-# Define your label mapping manually
 bias_labels = ['left', 'right', 'center']
 
 def predict_lstm(text):
